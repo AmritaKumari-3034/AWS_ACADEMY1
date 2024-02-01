@@ -1,0 +1,32 @@
+import path from 'path';
+import { createSitemap } from 'sitemaps';
+
+createSitemap({
+  filePath: path.join(__dirname, 'sitemap.xml'),
+  urls: [
+    {
+      loc: 'https://piyushacademy.com',
+      lastmod: '2023-01-31',
+      changefreq: 'weekly',
+      priority: 1,
+    },
+    {
+      loc: 'https://piyushacademy.com/corporatetraining',
+      lastmod: '2022-10-21',
+      changefreq: 'monthly',
+      priority: 0.8,
+    },
+    {
+      loc: 'https://piyushacademy.com/explorecourses',
+      lastmod: '2021-04-30',
+      changefreq: 'yearly',
+      priority: 0.4,
+    },
+     {
+      loc: 'https://piyushacademy.com/hirefromus',
+      lastmod: '2021-04-30',
+      changefreq: 'yearly',
+      priority: 0.4,
+    },
+  ],
+});
