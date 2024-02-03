@@ -53,6 +53,10 @@ function ExploreCourses() {
       <div className='w-full mt-10 mb-5'>
        
          <div className='col-span-1 '>
+          <div className='ml-64'>
+             <a href='/name' className='course-link'> home/</a>
+          </div>
+
            {selectedCourse && courses.find((course) => course.id === selectedCourse)?.component}
      </div>
    </div>

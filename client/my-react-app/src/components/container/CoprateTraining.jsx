@@ -59,8 +59,8 @@ export default function CoprateTraining() {
         {/* Program delivered */}
         <div className=' w-full bg-slate-50 '>
     <div className="container  text-center">
-      <h1 className="md:text-2xl text-center ml-40 mb-8 font-bold md:p-6">Programs delivered as per your training needs</h1>
-      <div className="flex flex-wrap -mx-4 gap-10 ml-80 ">
+      <h1 className="md:text-2xl text-center ml-24 mb-8 font-bold md:p-6">Programs delivered as per your training needs</h1>
+      <div className="flex flex-wrap -mx-4 gap-10 ml-96 ">
         {/* Box 1 */}
         <div className="md:w-60 px-4 mb-8 bg-white border-2 text-center ">
         <img
