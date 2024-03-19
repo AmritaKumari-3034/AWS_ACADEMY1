@@ -22,7 +22,7 @@ export default function Contact() {
             <div className='mb-2 block'>
               <Label htmlFor='fullname' value='First Name' />
             </div>
-            <TextInput id='fullname' type='fullname' placeholder='Full Name' required shadow />
+            <TextInput id='fullname' type='fullname' placeholder='First Name' required shadow />
           </div>
           <div className='w-full md:w-1/2'>
             <div className='mb-2 block'>

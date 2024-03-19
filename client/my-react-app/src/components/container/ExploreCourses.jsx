@@ -14,6 +14,7 @@ import Management from '../Courses/Courses/Management';
 import DataScience from '../Courses/Courses/DataScience';
 
 
+
 const courses = [
   { id: 'automation', name: 'Automation', component: <Automation /> },
   { id: 'cloudcomputing', name: 'Cloud Computing', component: <CloudComputing /> },
@@ -26,6 +27,10 @@ const courses = [
   { id: 'softwaredev', name: 'Software Development', component: <SoftwareDev /> },
   { id: 'uiuxdev', name: 'UI/UX Design', component: <UxUIDev /> },
 ];
+
+
+//course registered user details
+
 
 function ExploreCourses() {
   const [selectedCourse, setSelectedCourse] = useState(courses[0].id);
@@ -66,3 +71,5 @@ function ExploreCourses() {
 }
 
 export default ExploreCourses;
+
+

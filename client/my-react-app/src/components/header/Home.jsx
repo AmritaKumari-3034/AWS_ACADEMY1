@@ -1,20 +1,30 @@
 // Import necessary libraries and styles
 'use client';
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import LogoImage from '../Asset/img/logo.png'; 
 import { Button, Dropdown } from 'flowbite-react';
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import {Checkbox, Label, Modal, TextInput } from 'flowbite-react';
+//import {Checkbox, Label, Modal, TextInput } from 'flowbite-react';
 import { Card } from 'flowbite-react';
 import { Badge } from 'flowbite-react';
 import { HiClock } from 'react-icons/hi';
+import { useAuth } from '../Home/auth';
+
 
 const HeaderNavbar = () => {
   const [toggle, setToggle] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [email, setEmail] = useState('');
   const [selectedItem, setSelectedItem] = useState(null);
+  const { isLoggedIn } = useAuth();
+  
+  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+
+  const handleLoginClick = () => {
+    navigate('/login'); // Navigate to the 'Login' page
+  };
+
   
   const handleItemClick = (item) => {
     setSelectedItem(item);
@@ -24,11 +34,9 @@ const HeaderNavbar = () => {
     setOpenModal(false);
     setEmail('');
   }
-
   return (
     
-    <nav className="bg-white flex items-center justify-between mt-0">
-      
+    <nav className="bg-white flex items-center justify-between mt-0">  
       <div className="flex items-center  ">
         <NavLink to="/" className="flex items-center ml-32 mr-5">
           <img
@@ -430,7 +438,7 @@ const HeaderNavbar = () => {
       <div className=" ml-4">
         <input
           type="text"
-          placeholder="Search..."
+          placeholder="Search Courses..."
           className="border p-2 w-60  rounded-md focus:selection:"
         />
       </div>
@@ -444,26 +452,45 @@ const HeaderNavbar = () => {
           <NavLink className="navlink" to="/copratetraining">Corporate Training</NavLink>
         </div>
         <div className="text-black hover:text-blue-600 ml-4">
-          <NavLink className="navlink" to="/explorecourses">Explore Courses</NavLink>
-        </div>
-        <div className="text-black hover:text-blue-600 ml-4">
           <NavLink className="navlink" to="/hirefromus">Hire From Us</NavLink>
         </div>
+        <div className="text-black hover:text-blue-600 ml-4">
+          <NavLink className="navlink" to="/explorecourses">Explore Courses</NavLink>
+        </div>      
       </div>
       <>
-        <Button onClick={() => setOpenModal(true)} className='hover:text-gray-900 mr-32 font-bold font-serif'>Login</Button>
+
+    <div>
+        {isLoggedIn ? 
+      <div>
+        <div className="text-black hover:text-blue-600 ml-4">
+          <NavLink className="navlink" to="/alladmin">My Courses</NavLink>
+        </div>    
+          <Button className='hover:text-gray-900 mr-32 font-bold font-serif' onClick={handleLoginClick}>
+            Logout
+          </Button>
+          </div>
+          :
+          <Button className='hover:text-gray-900 mr-32 font-bold font-serif' onClick={handleLoginClick}>
+            Login
+          </Button>
+        }
+      </div>
+
+
+        {/* <Button onClick={() => setOpenModal(true)} className='hover:text-gray-900 mr-32 font-bold font-serif'>Login</Button>
         <Modal show={openModal} size="md" onClose={onCloseModal} popup>
           <Modal.Header />
           <Modal.Body>
             <div className="space-y-6">
-              <h3 className="text-sm text-gray-900 dark:text-white font-bold">Sign In </h3>
+              <h3 className="text-sm text-gray-900 dark:text-white font-bold">Login </h3>
               <div>
                 <div className="mb-2 block">
                   <Label htmlFor="email" value="Your email" />
                 </div>
                 <TextInput
                   id="email"
-                  placeholder="name@company.com"
+                  placeholder="amrita@gmail.com"
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                   required
@@ -497,7 +524,7 @@ const HeaderNavbar = () => {
               </div>
             </div>
           </Modal.Body>
-        </Modal>
+        </Modal> */}
       </>
       {/* Responsive Menu */}
       
@@ -508,12 +535,11 @@ const HeaderNavbar = () => {
           <NavLink className="navlink" to="/copratetraining">Corporate Training</NavLink>
         </div>
         <div className="text-white hover:text-blue-600 ml-3 p-3">
-          <NavLink className="navlink" to="/explorecourses">Explore Courses</NavLink>
-        </div>
-        <div className="text-white hover:text-blue-600 ml-3 p-3">
           <NavLink className="navlink" to="/hirefromus">Hire From Us</NavLink>
         </div>
-       
+        <div className="text-white hover:text-blue-600 ml-3 p-3">
+          <NavLink className="navlink" to="/explorecourses">Explore Courses</NavLink>
+        </div>  
       </div>
        
     </nav>

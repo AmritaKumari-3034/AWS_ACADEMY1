@@ -4,6 +4,9 @@ import { Button, Checkbox, Label, TextInput, Select } from 'flowbite-react';
 import { NavLink } from 'react-router-dom';
 import laptot from '../Asset/img/hirefromus.jpg';
 
+//Fatch the all user data who is hire from us
+
+
 function HireFromUs() {
   return (
     <div className='max-w-[1240px] p-2 mx-52 my-4 md:grid grid-cols-2'>

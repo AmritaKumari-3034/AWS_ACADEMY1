@@ -19,9 +19,15 @@ import ITServices from "./components/Courses/Courses/ITservices";
 import Automation from "./components/Courses/Courses/Automation";
 import ExploreCourses from "./components/container/ExploreCourses";
 import Sign from './components/container/Sign';
-
-
-
+import Login from './components/container/Login';
+import { Logout } from "./components/container/Logout";
+import MyCourses from "./components/MyCourses/MyCourses";
+import Calender from "./components/MyCourses/Calender";
+import Messages from "./components/MyCourses/Messages";
+import Mysession from "./components/MyCourses/Mysession";
+import Notification from "./components/MyCourses/Notification";
+import Supports from "./components/MyCourses/Supports";
+import Alladmin from "./components/MyCourses/Alladmin";
 
 
 
@@ -42,6 +48,8 @@ const App = () => {
       <Route path="ourfounder" element= {<OurFounder/>}/>
       <Route path="/" element= {<Banner/> }/>
       <Route path="/register" element= {<Sign/> }/>
+      <Route path="/login" element= {<Login/> }/>
+      <Route path="/logout" element= {<Logout/> }/>
       <Route path="/Program" element= {<ExlporeOurServices/> }/>
       <Route path="/datascience" element= {<DataScience/> }/>
       <Route path="/cloudcomputing" element= {<CloudComputing/> }/>
@@ -53,6 +61,14 @@ const App = () => {
       <Route path="/itservices" element= {<ITServices/> }/>
       <Route path="/automation" element= {<Automation/> }/>
       <Route path="/management" element= {<Management/> }/>
+      <Route path="/mycourses" element= {<MyCourses/> }/>
+      <Route path="/calender" element= {<Calender/> }/>
+      <Route path="/messages" element= {<Messages/> }/>
+      <Route path="/mysession" element= {<Mysession/> }/>
+      <Route path="/notification" element= {<Notification/> }/>
+      <Route path="/supports" element= {<Supports/> }/>
+      <Route path="/alladmin" element= {<Alladmin/> }/>
+    
 
 
     </Routes>

@@ -1,35 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import Axios from 'axios';
-import {useEffect, useState} from "react";
+//import Axios from 'axios';
+//import {useEffect, useState} from "react";
 import "../src/index.css";
+import { AuthProvider } from './components/Home/auth';
 
- const AppComponent = () => {
-   const [data, setData] = useState();
 
-   const getData = async () => {
-     const response = await Axios.get("http://localhost:8080/getData");
-     setData(response.data);
-   };
+//  const AppComponent = () => {
+//    const [data, setData] = useState();
 
-   useEffect(() => {
-     getData();
-   }, []);
-   return <div>{data}</div>;
- };
+//    const getData = async () => {
+//      const response = await Axios.get("http://localhost:8080/getData");
+//      setData(response.data);
+//    };
 
- export default AppComponent;
+//    useEffect(() => {
+//      getData();
+//    }, []);
+//    return <div>{data}</div>;
+//  };
+
+//  export default AppComponent;
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-
+  <AuthProvider>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  
+  </AuthProvider>
 );
 
 
