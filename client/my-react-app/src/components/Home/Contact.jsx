@@ -38,7 +38,7 @@ export default function Contact() {
             <div className='mb-2 block'>
               <Label htmlFor='email' value='Your Email' />
             </div>
-            <TextInput id='email' type='email' placeholder='name@flowbite.com' required shadow />
+            <TextInput id='email' type='email' placeholder='amrita@flowbite.com' required shadow />
           </div>
           <div className='w-full md:w-1/2'>
             <div className="mb-2 block">

@@ -21,14 +21,20 @@ const HeaderNavbar = () => {
   
   const navigate = useNavigate(); // Use useNavigate instead of useHistory
 
-  const handleLoginClick = () => {
-    navigate('/login'); // Navigate to the 'Login' page
-  };
-
-  
   const handleItemClick = (item) => {
     setSelectedItem(item);
   };
+
+  const handleLoginClick = () => {
+    navigate('/login'); // Navigate to the 'Login' page
+  };
+  const handleLogoutClick = () => {
+    navigate('/logout'); // Navigate to the 'Logout' page
+  };
+
+  
+  
+
 
   function onCloseModal() {
     setOpenModal(false);
@@ -461,19 +467,23 @@ const HeaderNavbar = () => {
       <>
 
     <div>
-        {isLoggedIn ? 
-      <div>
-        <div className="text-black hover:text-blue-600 ml-4">
+        {isLoggedIn ? (
+         <div>  
+        {/* <div className="text-black hover:text-blue-600 ml-4">
           <NavLink className="navlink" to="/alladmin">My Courses</NavLink>
-        </div>    
-          <Button className='hover:text-gray-900 mr-32 font-bold font-serif' onClick={handleLoginClick}>
+        </div>     */}
+          <Button className='hover:text-gray-900 mr-32 font-bold font-serif' onClick={handleLogoutClick}>
             Logout
           </Button>
           </div>
-          :
+        ) : (
+          <>
           <Button className='hover:text-gray-900 mr-32 font-bold font-serif' onClick={handleLoginClick}>
             Login
           </Button>
+          </>
+        )
+          
         }
       </div>
 

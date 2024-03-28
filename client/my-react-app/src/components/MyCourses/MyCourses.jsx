@@ -3,21 +3,21 @@ import { Button } from 'flowbite-react';
 
 function MyCourses() {
   return (
-    <div>    
-      <div className=' ml-72'>
-      <Button.Group>
-          <Button color="gray" >UNREAD</Button>
-          <Button color="gray" >READ</Button>
-        </Button.Group>
-    </div>
-    <div className=" ml-4">
-        <input
-          type="text"
-          placeholder="Search courses..."
-          className="border p-2 w-60  rounded-md focus:selection:"
-        />
-      </div>
-    </div>
+    <div className="flex justify-between items-center">
+      <div className="ml-72">
+        <Button.Group>
+          <Button color="gray">MY COURSES</Button>
+          <Button color="gray">RESULT</Button>
+       </Button.Group>
+     </div>
+  <div className="mr-72">
+    <input
+      type="text"
+      placeholder="Search Courses..."
+      className="border p-2 w-60 rounded-md focus:selection:"
+    />
+  </div>
+</div>
   )
 }
 

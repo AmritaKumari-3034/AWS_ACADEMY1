@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from "../Home/auth.jsx"
+import { useAuth } from "../Home/auth.jsx";
+//import axios from 'axios';
 
 
 export default function UserSchema() {
@@ -26,8 +27,7 @@ export default function UserSchema() {
   }
 
   //handling the form submission 
-  //handling the form submission 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(user); // using user.email instead of email
     try {
@@ -35,26 +35,24 @@ export default function UserSchema() {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
-          'Accept': 'application/json'
         },
         body: JSON.stringify(user), // sending user object
       });
 
       if(response.ok){
         const res_data = await response.json();
-        console.log(" res from server")
+        console.log(" res from server", res_data )
        // store the token to localhost
         storeTokenInLS(res_data.token);
         setUser({fname: "", lname: "", email: "", password: "", phone: "",});
         navigate("/login");
       }
-      
-
       console.log(response);
     } catch (error) {
       console.log("register", error);
     }
-  }
+  };
+
 
   return (
     <div>
@@ -73,9 +71,9 @@ export default function UserSchema() {
           <div className='flex flex-col md:flex-row md:gap-4 w-full'>
             <div className='w-full md:w-1/2'>
               <div className='mb-2 block'>
-                <Label htmlFor='fullname'>First Name</Label>
+                <Label htmlFor='firstname'>First Name</Label>
               </div>
-              <TextInput id='fullname' name='fname' value={user.fname} onChange={handleInput} placeholder='First Name' required shadow />
+              <TextInput id='firstname' name='fname' value={user.fname} onChange={handleInput} placeholder='First Name' required shadow />
             </div>
             <div className='w-full md:w-1/2'>
               <div className='mb-2 block'>

@@ -1,38 +1,50 @@
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+//import CoursesDetails from "../models/CourseDetails.js";
 
+const  checkUserAuth = async (req, res, next) => {
+ const token = req.header("Authorization");
 
+ if(!token) {
+  // if yuo attempt to use an expired token, you'll receive a "401 Unauthorized" error
 
+  return res
+  .status(401)
+  .json({ message: " Unauthorized HTTP request, Token not provided"});
+ }
+ console.log("Token from auth middleware", token);
+ //Assuming token is in the format "Bearer <jwt-token>, Removing the 'Bearer prefix"
+ const jwtToken = token.replace("Bearer", "").trim();
+ console.log("Token from auth middleware", jwtToken);
 
-var checkUserAuth = async (req, res, next) => {
-  let token;
-  const { authorization } = req.headers;
-  if (authorization && authorization.startsWith("Brearer")) {
-    try {
-      //Get Token from header
-      token = authorization.split(' ')[1];
-      //console.log('Token', token);
-      //console.log('Authorization', authorization);
+ try {
+   const isVerified = jwt.verify(jwtToken, process.env.JWT_SECRET_KEY);
 
-      //Verify Token
-      const { userID } = jwt.verify(token, process.env.JWT_SECRET_KEY);
-      console.log(User)
+   //Generate the token for user registration data
+   const userData = await User.findOne({ email: isVerified.email }).select({
+     password: 0,
+   });
+   console.log(userData);
 
-      //Get User from Token
-      req.user = await User.findById(userID).select
-      ("-password")
-      console.log(req.user);
-      next();
-    } catch (error) {
-      consolog.log(error);
-      res.status(401).send({ status: "failed", message: " Unauthorized User" });
-    }
-    if (!token) {
-      res
-        .status(401)
-        .send({ status: "failed", message: " Unauthorized User, No Token" });
-    }
-  }
+  //  //Generate the token for user registration data
+  //  const userData1 = await CoursesDetails.findOne({
+  //    email: isVerified.email,
+  //  }).select({
+  //    password: 0,
+  //  });
+  //  console.log(userData1);
+
+   req.token = token;
+   req.user = userData;
+   req.userID = User._id;
+
+   next();
+ } catch (error) {
+  return res.status(401).json({message: "Unauthorized invaid token."}); 
+  
+ }
+
+ 
 };
 
 export default checkUserAuth;

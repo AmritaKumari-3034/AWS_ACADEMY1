@@ -7,6 +7,7 @@ class userController {
     try {
       const { fname, lname, email, phone, password } = req.body;
       const user = await User.findOne({ email: email });
+      res.setHeader("Access-Control-Allow-Origin", "*");
       if (user) {
         return res
           .status(400)
@@ -32,6 +33,7 @@ class userController {
         process.env.JWT_SECRET_KEY,
         { expiresIn: "5d" }
       );
+      res.setHeader("Access-Control-Allow-Origin", "*");
       res.status(201).json({
         status: "success",
         message: "Register successfully",

@@ -10,6 +10,7 @@ class courseController {
     console.log(req.body);
     const { fullname, email, phone, password, courses } = req.body;
     const user = await CoursesDetails.findOne({ email: email });
+    res.setHeader("Access-Control-Allow-Origin", "*");
     // const existiPhone = await User.findOne({phone: phone})
     // if (existiPhone){
     //   res.status(400).send({ status: "failed", message: "User already registered" });
@@ -38,6 +39,7 @@ class courseController {
             process.env.JWT_SECRET_KEY,
             { expiresIn: "5d" }
           );
+          res.setHeader("Access-Control-Allow-Origin", "*");
           res.status(201).send({
             status: "success",
             message: " Register successfully",

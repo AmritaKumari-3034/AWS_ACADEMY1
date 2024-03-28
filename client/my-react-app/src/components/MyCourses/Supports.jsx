@@ -19,13 +19,23 @@ function Supports() {
         </div>      
    </div>
     </div>
-      <div className=' ml-60 mt-10 '>
-        <Button.Group>
-          <Button color="gray" >Open 0</Button>
-          <Button color="gray" >Close 0</Button>
-          <Button color="gray" >All</Button>
-        </Button.Group>
+  <div className="flex justify-between items-center">
+  <div className="ml-60 mt-10">
+    <Button.Group>
+      <Button color="gray" className="text-lg font-bold border border-gray-600">Open 0</Button>
+      <Button color="gray" className="text-lg font-bold border border-gray-600">Close 0</Button>
+      <Button color="gray" className="text-lg font-bold border border-gray-600">All</Button>
+    </Button.Group>
+  </div>
+  <div className="mr-60">
+    <Button gradientMonochrome="purple">Purple</Button>
+  </div>
 </div>
+
+      
+
+
+
 
     </div>
     

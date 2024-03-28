@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import HireUser from "../models/HireUser.js";
 import CoursesDetails from "../models/CoursesDetails.js";
 
+//Get all the user details
 export const getAllUsers = async (req, res, next) => {
   try {
     const users = await User.find();
@@ -16,6 +17,54 @@ export const getAllUsers = async (req, res, next) => {
   }
 };
 
+//update single  Register user
+export const getUserById = async (req, res) => {
+  try {
+    const id = req.params.id;
+   const data =  await User.findOne({ _id: id }, {password: 0});
+    return res.status(200).json({ data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+//Get the data on the bases of the current days
+
+
+
+//Update the Register user
+export const updateUserById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const updateUserData = req.body;
+
+     const updatedData = await User.updateOne(
+       { _id: id },
+       { 
+        $set: updateUserData,
+       }
+     );   
+     return response.status(200).json(updatedData); 
+  } catch (error) {
+    next(error);
+  }
+}
+
+//Delete the Register user
+export const deleteUserById = async (req, res) => {
+  try {
+    const id = req.params.id;
+     await User.deleteOne({ _id: id });
+    return res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    next(error);
+
+  }
+};
+
+
+//Get all the Courses details
 export const getCourseUsers = async (req, res, next) => {
    try {
      const courseusers = await CoursesDetails.find();
@@ -29,6 +78,19 @@ export const getCourseUsers = async (req, res, next) => {
    }
  };
 
+ //Delete the Courses user
+export const deleteCoursesById = async (req, res) => {
+  try {
+    const id = req.params.id;
+     await CoursesDetails.deleteOne({ _id: id });
+    return res.status(200).json({ message: "Courses deleted successfully" });
+  } catch (error) {
+    next(error);
+
+  }
+};
+
+//Get all hire users details 
 export const getHireUsers = async (req, res, next) => {
   try {
     const hireusers = await HireUser.find();
@@ -42,4 +104,12 @@ export const getHireUsers = async (req, res, next) => {
   }
 };
 
-export default { getAllUsers, getCourseUsers, getHireUsers };
+export default {
+  getAllUsers,
+  getCourseUsers,
+  getHireUsers,
+  deleteUserById,
+  deleteCoursesById,
+  getUserById,
+  updateUserById,
+};

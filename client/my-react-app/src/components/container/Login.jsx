@@ -37,7 +37,7 @@ import { useAuth } from '../Home/auth';
 
       if(response.ok){
         const res_data = await response.json();
-        console.log(" res from server")
+        console.log(" res from server", res_data)
        // store the token to localhost
         storeTokenInLS(res_data.token);
         alert("Login Successful");

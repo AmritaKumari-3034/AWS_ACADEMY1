@@ -15,7 +15,7 @@ router.get("/logout", userController.userlogout);
 router.post("/decode", userController.decodejwt);
 
 
-
+router.use("/changepassword", checkUserAuth);
 
 //Public Courses routes
 router.post("/courseregister", courseController.courseRegister);

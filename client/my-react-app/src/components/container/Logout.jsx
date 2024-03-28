@@ -9,7 +9,7 @@ export const Logout = () => {
 
     useEffect(() => {
       LogoutUser();
-    }, [LogoutUser])
+    }, [LogoutUser]);
 
     return <Navigate to="/login" />;
     

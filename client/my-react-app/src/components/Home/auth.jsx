@@ -4,13 +4,16 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem('token'));
-
+    const authorizationToken = `Bearer ${token} `;
+    
     useEffect(() => {
         const tokenFromLocalStorage = localStorage.getItem('token');
         setToken(tokenFromLocalStorage);
     }, []);
-
+    
+    
     const storeTokenInLS = (serverToken) => {
+        setToken(serverToken)
    try {
        localStorage.setItem("token", serverToken);
        return true; // Return true if setting the token was successful
@@ -24,12 +27,13 @@ export const AuthProvider = ({ children }) => {
     console.log("isLogged ", isLoggedIn);
 
     const LogoutUser = () => {
-        setToken("");
-       return localStorage.removeItem('token');
-    };
+    setToken(""); // Clear the token from state
+    localStorage.removeItem('token'); // Remove the token from localStorage
+};
+
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser }}>
+        <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser, authorizationToken }}>
             {children}
         </AuthContext.Provider>
     );
